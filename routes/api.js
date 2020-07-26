@@ -2,8 +2,20 @@
 const route = require('express').Router();
 const mongoose = require('mongoose');
 const Item = mongoose.model('Item');
-
-route.post('/place', (req, res) => {
+route.route('/place')
+   .get((req, res)=>{
+   Item.find({})
+   .then((items)=>{
+       res.statusCode = 200;
+       res.setHeader('Content-Type', 'application/json');
+       res.send(items);
+   }, (err)=>{
+       if(err)
+       console.log(err);
+   })
+   .catch((err)=>console.log(err));
+})
+    .post((req, res) => {
     let item = new Item();
     item.name = req.body.name;
     item.id = req.body.id;
@@ -20,5 +32,4 @@ route.post('/place', (req, res) => {
         }
     })
 })
-
 exports = module.exports = route;
