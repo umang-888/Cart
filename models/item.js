@@ -5,9 +5,6 @@ let itemSchema = new mongoose.Schema({
     name: {
         type: String
     },
-    id: {
-        type: Number
-    },
     discount: {
         type: Number
     },
