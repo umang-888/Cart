@@ -13,4 +13,5 @@ mongoose.connect('mongodb+srv://customer:Welcome@123@cluster0.sd2h6.mongodb.net/
 });
 
 require('./item');
+require('./contact');
 

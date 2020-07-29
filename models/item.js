@@ -2,24 +2,32 @@
 const mongoose = require('mongoose');
 
 let itemSchema = new mongoose.Schema({
-    name: {
-        type: String
+
+    userId: {
+        type: String,
+        require: true
+    },
+    ProductId: {
+        type: String,
+        require: true
+    },
+    isWishlist: {
+        type: String,
+        require: true
     },
     discount: {
         type: Number
     },
-    cost: {
-        type: Number
-    },
-    quantity: {
-        type: Number
-    },
     size: {
-        type: String
+        type: Number
     },
-    url: {
+    itemAmount: {
+        type: Number
+    },
+    itemImageUrl: {
         type: String
     }
+
 });
 
 const item = mongoose.model('Item', itemSchema);
