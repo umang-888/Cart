@@ -28,6 +28,7 @@ route.post('/place/:userId/:size', (req, res) => {
     item.size = req.params.size;
     item.itemAmount = req.body.itemAmount;
     item.itemImageUrl = req.body.itemImageUrl;
+
     item.save((err, doc) => {
         if (!err) {
             res.status(201).send(doc);
@@ -82,6 +83,16 @@ route.post('/address/:userId/:isWork/:isHome/:isDefault', (req, res) => {
     contact.isHome = req.params.isHome;
     contact.isWork = req.params.isWork;
     contact.isDefault = req.params.isDefault;
+
+    if (req.params.isDefault === 'true') {
+        Contact.updateMany({ userId: req.params.userId }, { isDefault: false }, { new: true })
+            .then(() => {
+                console.log("Succesfully Updated");
+            })
+            .catch((err) => {
+                res.send(err);
+            })
+    }
     contact.save((err, doc) => {
         if (!err) {
             res.send(doc);
@@ -89,6 +100,7 @@ route.post('/address/:userId/:isWork/:isHome/:isDefault', (req, res) => {
             res.send(err);
         }
     })
+
 });
 
 // To get the request of the customer detail
