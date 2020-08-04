@@ -106,12 +106,6 @@ route.post("/address/:userId/:isWork/:isHome/:isDefault", (req, res) => {
   });
 });
 
-route.get("/address", (req, res) =>
-  Contact.find({})
-    .then((addresses) => res.json(addresses))
-    .catch((err) => console.log(err))
-);
-
 // To get the request of the customer detail
 route.get("/address/:userId/", (req, res) => {
   Contact.find({ userId: req.params.userId })
